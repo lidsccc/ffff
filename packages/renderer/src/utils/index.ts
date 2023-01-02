@@ -1,0 +1,18 @@
+import { isObject } from "./is/index";
+
+export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
+  let key: string;
+  for (key in target) {
+    src[key] = isObject(src[key])
+      ? deepMerge(src[key], target[key])
+      : (src[key] = target[key]);
+  }
+  return src;
+}
+
+/**
+ * 判断是否 url
+ * */
+export function isUrl(url: string) {
+  return /(^http|https:\/\/)/g.test(url);
+}

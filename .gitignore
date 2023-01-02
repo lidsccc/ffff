@@ -1,0 +1,16 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+
+tmp
+**/.tmp
+release
+.vscode
+
+packages/renderer/components.d.ts
+packages/renderer/auto-imports.d.ts
+
+log
+IM_DB.db

@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="left">
+        <img class="avatar" src="" />
+        <div>
+            <div class="user-name"></div>
+            <div class="invite-text"></div>
+        </div>
+    </div>
+    <div class="right">
+        <img id="hang_up" class="icon" src="./assets/hang_up.png" />
+        <img id="answer" class="icon" src="./assets/answer.png" />
+    </div>
+</div>
+
+<script>
+    document.querySelector('#hang_up').addEventListener('click', () => {
+        window.ipcRenderer.invoke('HAND_UP_AUDIO_OR_VIDEO_REQUEST');
+    });
+    document.querySelector('#answer').addEventListener('click', () => {
+        window.ipcRenderer.invoke('ANSWER_AUDIO_OR_VIDEO_REQUEST');
+    });
+
+    window.ipcRenderer.on("AUDIO_OR_VIDEO_REQUEST", (_event, data) => {
+        document.querySelector('.avatar').src = data.replyAvatar;
+        document.querySelector('.user-name').innerHTML = data.replyName;
+        document.querySelector('.invite-text').innerHTML = `邀请你${data.isAudioCall ? '音频' : '视频'}通话`;
+    });
+</script>
+
+<style>
+    .container {
+        box-sizing: border-box;
+        width: 345px;
+        height: 84px;
+        /* border: 2px solid red; */
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+    }
+
+    .left {
+        display: flex;
+        align-items: center;
+    }
+
+    .user-name {
+        font-size: 16px;
+    }
+
+    .invite-text {
+        color: #999;
+    }
+
+    .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 4px;
+        margin-right: 12px;
+    }
+
+    .icon {
+        width: 32px;
+        height: 32px;
+        padding: 0 6px;
+        cursor: pointer;
+    }
+</style>

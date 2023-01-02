@@ -1,0 +1,44 @@
+{
+  "productName": "飞讯",
+  "appId": "feigao12@iflytek.com",
+  "asar": true,
+  "directories": {
+    "output": "release/${version}"
+  },
+  "files": [
+    "dist"
+  ],
+  "mac": {
+    "artifactName": "feixun_${version}.${ext}",
+    "icon": "./packages/renderer/public/icon.icns",
+    "target": [
+      "dmg"
+    ],
+    "extraResources": {
+      "from": "node_modules/@iflytek/im-electron-sdk/fim-electron-sdk/lib/mac",
+      "to": "mac"
+    }
+  },
+  "win": {
+    "icon": "./packages/renderer/public/icon.ico",
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      }
+    ],
+    "artifactName": "feixun_${version}.${ext}",
+    "extraResources": {
+      "from": "node_modules/@iflytek/im-electron-sdk/fim-electron-sdk/lib/windows",
+      "to": "windows"
+    }
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "deleteAppDataOnUninstall": false
+  }
+}
